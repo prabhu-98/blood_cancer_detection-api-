@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
 import gdown
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 app = Flask(__name__)
 # Google Drive file ID

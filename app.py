@@ -3,11 +3,18 @@ import numpy as np
 from flask import Flask, request, jsonify
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
+import gdown
 
 app = Flask(__name__)
-
+# Google Drive file ID
+MODEL_URL = "https://drive.google.com/file/d/1w6RkIrKozT76wCbs1WvBT_vgbnhfQIeT/view?usp=sharing"
+MODEL_PATH = "blood_cell_cancer_model.keras"
 # Load the trained model
-MODEL_PATH = "blood_cell_cancer_model.keras"  # Update with your actual model path
+# Download model if not exists
+if not os.path.exists(MODEL_PATH):
+    print("Downloading model...")
+    gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
+
 model = load_model(MODEL_PATH)
 
 # Define class labels
